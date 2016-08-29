@@ -13,10 +13,33 @@ type Logs struct {
 	log   string
 }
 
+func New(log, lev string) Logs {
+	return Logs{lev, log}
+}
+
 func (l *Logs) Set(log string, lev string) {
 	if level[l.Level] < level[lev] {
 		l.log = log
 		l.Level = lev
+	}
+}
+
+func (l *Logs) SetError(log string) {
+	l.log = log
+	l.Level = "error"
+}
+
+func (l *Logs) SetWarning(log string) {
+	if level[l.Level] < level["warning"] {
+		l.log = log
+		l.Level = "warning"
+	}
+}
+
+func (l *Logs) SetInfo(log string) {
+	if level[l.Level] == level["info"] {
+		l.log = log
+		l.Level = "info"
 	}
 }
 
