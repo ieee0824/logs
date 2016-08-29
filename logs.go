@@ -13,8 +13,8 @@ type Logs struct {
 	log   string
 }
 
-func New(log, lev string) Logs {
-	return Logs{lev, log}
+func New(log, lev string) *Logs {
+	return &Logs{lev, log}
 }
 
 func (l *Logs) Set(log string, lev string) {
